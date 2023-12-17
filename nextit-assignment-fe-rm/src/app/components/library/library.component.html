@@ -1,0 +1,73 @@
+<main>
+  <h1 class="col-span-full">
+    NextIT Assignment -
+    <span class="text-xl font-semibold">Roman Masár</span>
+  </h1>
+
+  <form [formGroup]="bookForm">
+    <label for="id" *ngIf="isExistingSelected">
+      ID (len pre testovacie účely)
+      <input id="id" formControlName="id" />
+    </label>
+    <label for="name">
+      Name*
+      <input id="name" formControlName="name" required />
+    </label>
+    <label for="author">
+      Author*
+      <input id="author" formControlName="author" required />
+    </label>
+    <h4 class="mx-auto mt-2">--- Lending System ---</h4>
+    <label for="firstName">
+      First Name
+      <input id="firstName" formControlName="firstName" />
+    </label>
+    <label for="lastName">
+      Last Name
+      <input id="lastName" formControlName="lastName" />
+    </label>
+    <label for="from">
+      From
+      <input
+        id="from"
+        formControlName="from"
+        type="date"
+        [max]="maxInputDate"
+      />
+    </label>
+    <div class="flex justify-between mt-4 gap-4">
+      <button (click)="onResetForm()" class="resetButton">Reset</button>
+      <button
+        *ngIf="isExistingSelected"
+        (click)="onDeleteBook()"
+        class="deleteButton"
+      >
+        Delete
+      </button>
+      <button
+        (click)="onSubmitForm()"
+        class="submitButton"
+        [class.disabled]="bookForm.invalid"
+        [disabled]="bookForm.invalid"
+      >
+        {{ isExistingSelected ? "Update" : "Create" }}
+      </button>
+    </div>
+  </form>
+
+  <div
+    *ngFor="let book of books"
+    class="bookContainer"
+    (click)="selectBook(book)"
+  >
+    <h1>{{ book.name }} - {{ book.author }}</h1>
+    <div *ngIf="book.borrowed.firstName" class="flex flex-wrap gap-2">
+      <h2>{{ book.borrowed.firstName }}</h2>
+      <h2>{{ book.borrowed.lastName }}</h2>
+      <h3>{{ book.borrowed.from }}</h3>
+    </div>
+    <h1 *ngIf="!book.borrowed.firstName" class="text-green-700 font-semibold">
+      AVAILABLE
+    </h1>
+  </div>
+</main>

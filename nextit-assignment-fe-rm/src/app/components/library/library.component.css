@@ -1,0 +1,43 @@
+label {
+    @apply flex gap-2 flex-col
+}
+
+form {
+    @apply flex flex-col gap-2 col-span-full w-[400px]
+}
+
+main {
+    @apply mx-auto max-w-4xl text-slate-600 grid grid-cols-1 gap-16 p-8 justify-items-center lg:grid-cols-2
+}
+
+input:not([type=submit]) {
+    @apply outline outline-slate-200 p-1 rounded-sm disabled:opacity-50
+}
+
+.ng-valid[required], .ng-valid.required {
+    @apply border-l-4 border-green-500
+}
+
+.ng-invalid:not(form) {
+    @apply border-l-4 border-red-500
+}
+
+.submitButton {
+    @apply cursor-pointer bg-green-400 px-4 py-2 w-40 rounded-full hover:drop-shadow-md
+}
+
+.disabled {
+    @apply opacity-40 text-white cursor-default hover:drop-shadow-none
+}
+
+.bookContainer {
+    @apply flex flex-col ring-1 p-4 w-[400px] gap-8 cursor-pointer hover:ring-2 rounded-md bg-slate-100
+}
+
+.resetButton {
+    @apply cursor-pointer bg-yellow-300 px-4 py-2 w-40 rounded-full hover:drop-shadow-md
+}
+
+.deleteButton {
+    @apply cursor-pointer bg-red-300 px-4 py-2 w-40 rounded-full hover:drop-shadow-md
+}
